@@ -1,6 +1,8 @@
 @baseUrl = http://localhost:3002
 
 @jwtToken = {{authLogin.response.body.accessToken}} 
+
+
 ### Auth login
 # @name authLogin
 POST {{baseUrl}}/auth/login
@@ -36,4 +38,15 @@ Authorization: Bearer {{jwtToken}}
 {
     "name": "Leo",
     "email": "leo@email.com"
+}
+
+### update user password
+# @name updateUserPassword
+PATCH {{baseUrl}}/user/me/password
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+    "currentPassword": "123456",
+    "newPassword": "123456"
 }
