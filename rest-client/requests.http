@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3002
 
-@jwtToken = {{authLogin.response.body.accessToken}} 
+@jwtToken = {{authLogin.response.body.accessToken}}
 
 
 ### Auth login
@@ -50,3 +50,13 @@ Authorization: Bearer {{jwtToken}}
     "currentPassword": "123456",
     "newPassword": "123456"
 }
+
+### read one user
+# @name readOneUser
+GET {{baseUrl}}/user/me
+Authorization: Bearer {{jwtToken}}
+
+### delete one user
+# @name deleteUser
+DELETE {{baseUrl}}/user/me
+Authorization: Bearer {{jwtToken}}

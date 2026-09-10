@@ -10,9 +10,18 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     context: ExecutionContext,
     status?: any,
   ): TUser {
-    if (!user || info instanceof JsonWebTokenError) {
+    const req = context.switchToHttp().getRequest();
+    const authHeader = req?.headers?.authorization;
+    // debug info to help diagnose missing/invalid token in requests
+    // (remove or lower log level in production)
+    console.debug('[JwtAuthGuard] authorization header:', authHeader);
+    console.debug('[JwtAuthGuard] info:', info);
+    console.debug('[JwtAuthGuard] err:', err);
+
+    if (err || !user || info instanceof JsonWebTokenError) {
       throw new UnauthorizedException('voce precisa fazer login');
     }
-    return super.handleRequest(err, user, info, context, status);
+
+    return user;
   }
 }

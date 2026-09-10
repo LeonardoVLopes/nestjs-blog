@@ -30,6 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user || user.forceLogout) {
       throw new UnauthorizedException('voce precisa fazer login');
     }
+
     return user;
   }
 }

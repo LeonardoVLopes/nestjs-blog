@@ -34,8 +34,14 @@ export class AuthService {
       sub: user.id,
       email: user.email,
     };
+    // clear forceLogout on successful login so the newly issued token is valid
+    if (user.forceLogout) {
+      user.forceLogout = false;
+      await this.userService.save(user);
+    }
+
     const accessToken = await this.jwtService.signAsync(jwtPayload);
-    
+
     return { accessToken };
   }
 }
