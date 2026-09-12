@@ -20,6 +20,9 @@ export class CreatePostDto {
   content!: string;
 
   @IsOptional() // vai ser requerido no NextJS
-  @IsUrl({ require_tld: false })
+  @IsUrl(
+    { require_tld: false },
+    { message: 'URL da imagem precisa ser uma URL valida' },
+  )
   coverImageUrl?: string;
 }
