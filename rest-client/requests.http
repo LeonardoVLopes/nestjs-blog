@@ -2,6 +2,17 @@
 
 @jwtToken = {{authLogin.response.body.accessToken}}
 
+@postUuid = {{createPostOwned.response.body.id}}
+@postSlug = {{createPostOwned.response.body.slug}}
+@imagePath = {{uploadImage.response.body.url}}
+@imageUrl = {{baseUrl}}{{imagePath}}
+
+@userNameForTesting = Leo
+@userEmailForTesting = leo@email.com
+@userPasswordForTesting = 123456
+@userNewPasswordForTesting = 12345
+
+# Auth ####################################################
 
 ### Auth login
 # @name authLogin
@@ -9,9 +20,11 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "leo@email.com",
-    "password": "123456"
+    "email": "{{userEmailForTesting}}",
+    "password": "{{userPasswordForTesting}}"
 }
+
+# User ####################################################
 
 ### Read one user
 # @name readOneUser
@@ -24,9 +37,9 @@ POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
-    "name": "Leo",
-    "email": "leo@email.com",
-    "password": "123456"
+    "name": "{{userNameForTesting}}",
+    "email": "{{userEmailForTesting}}",
+    "password": "{{userPasswordForTesting}}"
 }
 
 ### update user
@@ -60,3 +73,18 @@ Authorization: Bearer {{jwtToken}}
 # @name deleteUser
 DELETE {{baseUrl}}/user/me
 Authorization: Bearer {{jwtToken}}
+
+# Post ####################################################
+
+### create post owned
+# @name createPostOwned
+POST {{baseUrl}}/post/me
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+    "title": "Titulo do post",
+    "excerpt": "excerto do post",
+    "content": "conteudo"
+}
+
