@@ -88,3 +88,13 @@ Authorization: Bearer {{jwtToken}}
     "content": "conteudo"
 }
 
+### read all post owned
+# @name readAllPostOwned
+GET {{baseUrl}}/post/me
+Authorization: Bearer {{jwtToken}}
+
+### read one post owned
+# @name readOnePostOwned
+GET {{baseUrl}}/post/me/{{postUuid}}
+Authorization: Bearer {{jwtToken}}
+
