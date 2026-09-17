@@ -98,3 +98,16 @@ Authorization: Bearer {{jwtToken}}
 GET {{baseUrl}}/post/me/{{postUuid}}
 Authorization: Bearer {{jwtToken}}
 
+### update one post owned
+# @name updateOnePostOwned
+PATCH {{baseUrl}}/post/me/{{postUuid}}
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+    "title": "Novo - titulo do post",
+    "excerpt": "Novo - excerpt",
+    "content": "Novo - conteudo",
+    "published": true
+}
+
