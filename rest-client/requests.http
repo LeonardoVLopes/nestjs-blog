@@ -83,10 +83,18 @@ Content-Type: application/json
 Authorization: Bearer {{jwtToken}}
 
 {
-    "title": "Titulo do post",
+    "title": "DELETE Titulo do post",
     "excerpt": "excerto do post",
     "content": "conteudo"
 }
+
+### read all post public
+# @name readAllPostPublic
+GET {{baseUrl}}/post/
+
+### read one post public
+# @name readOnePostPublic
+GET {{baseUrl}}/post/{{postSlug}}
 
 ### read all post owned
 # @name readAllPostOwned
@@ -110,4 +118,10 @@ Authorization: Bearer {{jwtToken}}
     "content": "Novo - conteudo",
     "published": true
 }
+
+### delete one post owned
+# @name deleteOnePostOwned
+DELETE {{baseUrl}}/post/me/{{postUuid}}
+Authorization: Bearer {{jwtToken}}
+
 
