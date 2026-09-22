@@ -124,4 +124,21 @@ Authorization: Bearer {{jwtToken}}
 DELETE {{baseUrl}}/post/me/{{postUuid}}
 Authorization: Bearer {{jwtToken}}
 
+# UPLOAD #####################################################
 
+### Upload image
+# @name uploadImage
+POST {{baseUrl}}/upload
+Authorization: Bearer {{jwtToken}}
+Content-Type: multipart/form-data; boundary=----BryenFormBoundary
+
+------BryenFormBoundary
+content-disposition: form-data; name="file"; filename="image.jpg"
+Content-Type: image/png
+
+< ../dev/images/image.jpg
+------BryenFormBoundary--
+
+### read image
+# @name readImage
+GET {{imageUrl}}

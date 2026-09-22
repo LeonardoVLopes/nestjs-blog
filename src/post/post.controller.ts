@@ -68,7 +68,7 @@ export class PostController {
 
   @Get()
   async findAllPublished() {
-    const posts = await this.postService.findAll({published: true});
+    const posts = await this.postService.findAll({ published: true });
     return posts.map((post) => new PostResponseDto(post));
   }
 

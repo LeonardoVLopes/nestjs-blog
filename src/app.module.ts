@@ -8,6 +8,7 @@ import { PostModule } from './post/post.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Post } from './post/entities/post.entity';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { Post } from './post/entities/post.entity';
             database: process.env.DB_DATABASE || './db.sqlite',
             synchronize: process.env.DB_SYNCHRONIZE === '1',
             // autoLoadEntities: process.env.DB_AUTO_LOAD_ENTITIES === '1',
-            entities: [User, Post]
+            entities: [User, Post],
           };
         }
 
@@ -39,6 +40,7 @@ import { Post } from './post/entities/post.entity';
         };
       },
     }),
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
